@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./Login.module.css";
+import { Auth } from "aws-amplify";
 
 class Login extends Component {
 	state = {
@@ -17,8 +18,15 @@ class Login extends Component {
 		});
 	};
 
-	handleSubmit = event => {
+	handleSubmit = async event => {
 		event.preventDefault();
+
+		try {
+			await Auth.signIn(this.state.email, this.state.password);
+			alert("Logged in");
+		} catch(e) {
+			alert(e.message);
+		}
 	};
 
 	render() {
