@@ -7,7 +7,10 @@ class NavBar extends React.Component {
 		return (
 			<nav className={styles.navbar}>
 				<Link to="/">scribe</Link>
-				<div className={styles.iconsContainer} />
+				<div className={styles.iconsContainer}>
+					<Link to="/signup">Signup</Link>
+					<Link to="/login">Login</Link>
+					</div>
 			</nav>
 		);
 	}

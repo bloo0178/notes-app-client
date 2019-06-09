@@ -1,17 +1,14 @@
 .navbar {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.911);
-    opacity: 0.9;
-    top: 0;
-    width: 100%;
-  }
-  
-  
-  
-  .iconsContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: .5rem;
-  
-  }
+	position: fixed;
+	background-color: rgba(233, 226, 130, 0.911);
+	opacity: 0.9;
+	top: 0;
+	width: 100%;
+}
+
+.iconsContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding: 0.5rem;
+}
