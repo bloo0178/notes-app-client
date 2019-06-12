@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import styles from "./Login.module.css";
 import { Auth } from "aws-amplify";
+import LoaderButton from "../../components/LoaderButton/LoaderButton";
 
 class Login extends Component {
 	state = {
 		email: "",
-		password: ""
+		password: "",
+		isLoading: false
 	};
 
 	validateForm() {
@@ -21,12 +23,15 @@ class Login extends Component {
 	handleSubmit = async event => {
 		event.preventDefault();
 
+		this.setState({ isLoading: true });
+
 		try {
 			await Auth.signIn(this.state.email, this.state.password);
 			this.props.userHasAuthenticated(true);
 			this.props.history.push("/");
-		} catch(e) {
+		} catch (e) {
 			alert(e.message);
+			this.setState({ isLoading: false });
 		}
 	};
 
@@ -51,13 +56,20 @@ class Login extends Component {
 						value={this.state.password}
 						onChange={this.handleChange}
 					/>
-					<button
+					{/*<button
 						name="submit"
 						type="submit"
 						disabled={!this.validateForm()}
 					>
 						Submit
-					</button>
+					</button>*/}
+					<LoaderButton
+						text="Login"
+						disabled={!this.validateForm()}
+						type="submit"
+						isLoading={this.state.isLoading}
+						loadingText="Logging in..."
+					/>
 				</form>
 			</div>
 		);
