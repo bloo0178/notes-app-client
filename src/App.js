@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import styles from "./App.module.css";
 import Routes from "./Routes";
 import { Auth } from "aws-amplify"; // used for accessing current user session
+import { withRouter } from "react-router-dom";
 
 class App extends React.Component {
 	state = {
@@ -29,15 +30,15 @@ class App extends React.Component {
 
 	handleLogout = async event => {
 		await Auth.signOut();
-
 		this.userHasAuthenticated(false);
-	}
+		this.props.history.push("/login");
+	};
 
 	render() {
 		const childProps = {
 			isAuthenticated: this.state.isAuthenticated,
 			userHasAuthenticated: this.userHasAuthenticated,
-			handleLogout: this.handleLogout,
+			handleLogout: this.handleLogout
 		};
 		return (
 			!this.state.isAuthenticating && (
@@ -50,4 +51,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default withRouter(App);
