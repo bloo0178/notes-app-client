@@ -3,17 +3,14 @@ import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
-	handleLogout = event => {
-		this.props.childProps.userHasAuthenticated(false);
-	};
 	render() {
-		//const test = {...this.props.childProps};
-		//console.log(test);
 		return (
 			<Fragment>
 				{this.props.childProps.isAuthenticated ? (
 					<nav className={styles.navbar}>
-						<button onClick={this.handleLogout}>
+						<button
+							onClick={this.props.childProps.handleLogout}
+						>
 							logout
 						</button>
 					</nav>
