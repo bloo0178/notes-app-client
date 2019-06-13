@@ -4,6 +4,7 @@ import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound/NotFound";
 import Login from "./views/Login/Login";
 import Signup from "./views/Signup/Signup";
+import NewNote from "./views/NewNote/NewNote";
 import AppliedRoute from "./components/AppliedRoute/AppliedRoute";
 
 export default ({ childProps }) => (
@@ -19,6 +20,12 @@ export default ({ childProps }) => (
 			path="/signup"
 			exact
 			component={Signup}
+			props={childProps}
+		/>
+		<AppliedRoute
+			path="/notes/new"
+			exact
+			component={NewNote}
 			props={childProps}
 		/>
 		<Route component={NotFound} />
