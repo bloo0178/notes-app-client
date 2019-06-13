@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
 import config from "../../config";
 import styles from "./NewNote.module.css";
+import { API } from "aws-amplify";
+import { s3Upload } from "../../libs/awsLib";
 
 class NewNote extends Component {
 	file = null;
@@ -36,7 +38,25 @@ class NewNote extends Component {
 		}
 
 		this.setState({ isLoading: true });
+
+		try {
+			const attachment = this.file ? await s3Upload(this.file) : null;
+
+			await this.createNote({
+				content: this.state.content
+			});
+			this.props.history.push("/");
+		} catch (e) {
+			alert(e);
+			this.setState({ isLoading: false });
+		}
 	};
+
+	createNote(note) {
+		return API.post("notes", "/notes", {
+			body: note
+		});
+	}
 
 	render() {
 		return (
@@ -61,6 +81,5 @@ class NewNote extends Component {
 		);
 	}
 }
-
 
 export default NewNote;
