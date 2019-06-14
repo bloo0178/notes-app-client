@@ -5,6 +5,7 @@ import NotFound from "./views/NotFound/NotFound";
 import Login from "./views/Login/Login";
 import Signup from "./views/Signup/Signup";
 import NewNote from "./views/NewNote/NewNote";
+import Notes from "./views/Notes/Notes";
 import AppliedRoute from "./components/AppliedRoute/AppliedRoute";
 
 export default ({ childProps }) => (
@@ -26,6 +27,12 @@ export default ({ childProps }) => (
 			path="/notes/new"
 			exact
 			component={NewNote}
+			props={childProps}
+		/>
+		<AppliedRoute
+			path="/notes/:id"
+			exact
+			component={Notes}
 			props={childProps}
 		/>
 		<Route component={NotFound} />
