@@ -28,7 +28,6 @@ class Login extends Component {
 		try {
 			await Auth.signIn(this.state.email, this.state.password);
 			this.props.userHasAuthenticated(true);
-			this.props.history.push("/");
 		} catch (e) {
 			alert(e.message);
 			this.setState({ isLoading: false });
@@ -56,13 +55,6 @@ class Login extends Component {
 						value={this.state.password}
 						onChange={this.handleChange}
 					/>
-					{/*<button
-						name="submit"
-						type="submit"
-						disabled={!this.validateForm()}
-					>
-						Submit
-					</button>*/}
 					<LoaderButton
 						text="Login"
 						disabled={!this.validateForm()}
